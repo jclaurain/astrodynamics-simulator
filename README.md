@@ -12,7 +12,7 @@ The project currently focuses on two-body earth propagation and visualization, w
 - Animated spacecraft orbit along the plotted trajectory using 'matplotlib.animation'
 
 ## Project Structure
-
+```text
 ├── src/
 │   └── astrosim/
 │       ├── constants.py
@@ -27,3 +27,4 @@ The project currently focuses on two-body earth propagation and visualization, w
 ├── tests/
 ├── pyproject.toml
 └── README.md
+```
