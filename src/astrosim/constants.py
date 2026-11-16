@@ -4,3 +4,6 @@ radiusEarth = 6371  #km
 muSun = 1.32712e11  #km^3/s^2
 
 AU = 149597870.7    #km
+
+muPluto = 975.5
+muCharon = 106.1
