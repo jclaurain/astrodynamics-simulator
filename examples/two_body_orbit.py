@@ -6,10 +6,10 @@ from astrosim.elements import initialV, orbitalPeriod
 
 def main():
     h = 500 #km
-    e = 0
+    e = 0.06
     r0 = np.array([radiusEarth+h,0,0])
     rMag = np.linalg.norm(r0)
-    v0 = initialV(rMag,muEarth,np.pi/2,"elliptical",e)
+    v0 = initialV(rMag,muEarth,0,"elliptical",e)
 
     state0 = np.concatenate((r0,v0))
 
@@ -19,7 +19,7 @@ def main():
 
     r,v,t = rVFromSol(solution)
 
-    animateOrbit(r,t,radiusEarth,250,5000)
+    animateOrbit(r,t,radiusEarth,semiMinor=None,resolution=250,speed=5000.0)
 
 if __name__ == "__main__":
     main()

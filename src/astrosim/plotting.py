@@ -10,9 +10,21 @@ def spherePoints(rMag,resolution):
     z = rMag * np.outer(np.ones(np.size(theta)),np.cos(phi))
     return x,y,z
 
-def plotOrbit(r,rSphere,resolution):
+def oblateSpheroidPoints(semiMajor,semiMinor,resolution):
+    theta = np.linspace(0,2*np.pi,resolution)
+    phi = np.linspace(0,np.pi,resolution)
+    x = semiMajor * np.outer(np.cos(theta),np.sin(phi))
+    y = semiMajor * np.outer(np.sin(theta),np.sin(phi))
+    z = semiMinor * np.outer(np.ones(np.size(theta)),np.cos(phi))
+    return x,y,z
 
-    x,y,z = spherePoints(rSphere,resolution)
+def plotOrbit(r,rSphere,semiMinor=None,resolution=int):
+
+    if semiMinor == None:
+        x,y,z = spherePoints(rSphere,resolution)
+    else:
+        x,y,z = oblateSpheroidPoints(rSphere,semiMinor,resolution)
+
     fig = plt.figure()
     ax = fig.add_subplot(projection='3d')
 
@@ -27,9 +39,13 @@ def plotOrbit(r,rSphere,resolution):
     ax.view_init(elev=0, azim=-45)
     plt.show()
 
-def animateOrbit(r,t,rSphere,resolution,speed):
+def animateOrbit(r,t,rSphere,semiMinor=None,resolution=int,speed=float):
 
-    x,y,z = spherePoints(rSphere,resolution)
+    if semiMinor == None:
+        x,y,z = spherePoints(rSphere,resolution)
+    else:
+        x,y,z = oblateSpheroidPoints(rSphere,semiMinor,resolution)
+    
     fig = plt.figure()
     ax = fig.add_subplot(projection='3d')
 
