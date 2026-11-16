@@ -11,9 +11,14 @@ def initialV(rMag,mu1,i,orbitType = "elliptical",e=None,mu2=None):    #i in radi
                 v0 = np.array([0.0,
                                 vMag*np.cos(i),
                                 vMag*np.sin(i)])
-            else:
-                rp1 = mu2/(mu1+mu2)*rMag
+            else:  #no inclination yet
+                rp1 = mu2/(mu1+mu2)*rMag  #both bodies at periapsis (pi out of phase)
                 rp2 = mu1/(mu1+mu2)*rMag
+                a1 = rp1/(1-e)
+                a2 = rp2/(1-e)
+                v1Mag = np.sqrt((mu1+mu2)*((2/rp1)-(1/a1)))
+                v2Mag = np.sqrt((mu1+mu2)*((2/rp2)-(1/a2)))
+                v0 = np.array([0.0,v1Mag,0.0,0.0,-v2Mag,0.0])
     else:
         raise ValueError("orbitType must be elliptical")
     return v0
